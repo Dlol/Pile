@@ -2,23 +2,22 @@
 #include <stdexcept>
 
 template <class T>
-void pile<T>::push(T const& element){
+void nstd::pile<T>::push(T const& element){
   elems.push_back(element);
 }
 
 //template <class T>
-//void pile<T>::push(T *const element){
+//void nstd::pile<T>::push(T *const element){
 //  elems.push_back(element);
 //}
 
 template <class T>
-T pile<T>::remove(){
+T nstd::pile<T>::remove(){
   if(elems.empty()){
     isEmpty = true;
     throw std::invalid_argument( "there is nothing on the pile" );
   }
-  srand(time(NULL));
-  int random = rand() % elems.size();
+  int random = genRand() % elems.size();
   T out = elems.at(random);
   elems.erase(elems.begin() + random);
   if(elems.empty()){
@@ -31,16 +30,31 @@ T pile<T>::remove(){
 }
 
 template <class T>
-T pile<T>::get(){
+T nstd::pile<T>::get(){
   if(elems.empty()){
     throw std::invalid_argument( "there is nothing on the pile" );
   }
   srand(time(NULL));
   int size = static_cast<int>(elems.size());
-  return elems.at(rand() % size);
+  return elems.at(genRand() % size);
 }
 
 template <class T>
-pile<T>::pile(){
+nstd::pile<T>::pile(){
   
+}
+
+template <class T>
+int nstd::pile<T>::genRand(){
+  int thyme = time(NULL);
+  if(thyme == prevTime){
+    timeGen++;
+    thyme += timeGen;
+  }
+  else{
+    timeGen = 0;
+    prevTime = thyme;
+  }
+  srand(thyme);
+  return rand();
 }

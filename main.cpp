@@ -4,10 +4,14 @@
 int main() {
   std::cout << "Hello World!\n";
 
-  pile<int> test;
-  test.push(3);
-  test.push(12);
-  std::cout << test.remove() << std::endl;
-  std::cout << test.remove() << std::endl;
-  std::cout << test.remove() << std::endl;
+  nstd::pile<int> test;
+  for (int i = 0; i < 5; i++){
+    test.push(1);
+    test.push(3);
+    test.push(2);
+    std::cout << test.remove() << std::endl;
+    std::cout << test.remove() << std::endl;
+    std::cout << test.remove() << std::endl;
+    std::cout << time(NULL) << std::endl;
+  }
 }
