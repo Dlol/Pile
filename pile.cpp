@@ -14,7 +14,7 @@ void nstd::pile<T>::push(T* elements, size_t n){
 }
 
 template <class T>
-T nstd::pile<T>::remove(){
+T nstd::pile<T>::pop(){
   if(elems.empty()){
     throw std::invalid_argument( "there is nothing on the pile" );
   }
@@ -36,9 +36,19 @@ T nstd::pile<T>::get(){
 }
 
 template <class T>
-nstd::pile<T>::pile(){
-  
+nstd::pile<T>::pile(T const& element){
+  elems.push_back(element);
 }
+
+template <class T>
+nstd::pile<T>::pile(T* elements, size_t n){
+  for(int i = 0; i < n; i++){
+    elems.push_back(elements[i]);
+  }
+}
+
+template <class T>
+nstd::pile<T>::pile(){}
 
 template <class T>
 int nstd::pile<T>::genRand(){
