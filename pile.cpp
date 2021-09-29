@@ -6,25 +6,21 @@ void nstd::pile<T>::push(T const& element){
   elems.push_back(element);
 }
 
-//template <class T>
-//void nstd::pile<T>::push(T *const element){
-//  elems.push_back(element);
-//}
+template <class T>
+void nstd::pile<T>::push(T* elements, size_t n){
+  for(int i = 0; i < n; i++){
+    elems.push_back(elements[i]);
+  }
+}
 
 template <class T>
 T nstd::pile<T>::remove(){
   if(elems.empty()){
-    isEmpty = true;
     throw std::invalid_argument( "there is nothing on the pile" );
   }
   int random = genRand() % elems.size();
   T out = elems.at(random);
   elems.erase(elems.begin() + random);
-  if(elems.empty()){
-    isEmpty = true;
-    return out;
-  }
-  isEmpty = false;
   return out;
   // heeh random
 }

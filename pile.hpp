@@ -2,7 +2,7 @@
 #define _PILE_HPP
 #include <vector>
 #include <stdlib.h>
-#include <time.h> 
+#include <time.h>
 
 namespace nstd{
   template <class T>
@@ -14,10 +14,12 @@ namespace nstd{
       int genRand();
     public:
       void push(T const&);
-      //void push(T *const);
+      void push(T*, size_t);
       
       T remove();
-      bool isEmpty = true;
+      bool isEmpty(){
+        return elems.empty();
+      }
       T get();
       pile();
   };
